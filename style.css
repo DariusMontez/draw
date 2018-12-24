@@ -1,0 +1,175 @@
+* {
+  box-sizing: border-box;
+}      
+
+html {
+  height: 100%;
+}
+
+body {
+  margin: 0;
+  padding: 0;
+  height: 100%;
+
+  display: grid;
+  grid-template-rows: 1fr 64px;
+  grid-template-columns: auto 1fr;
+  font-size: 1em;
+  font-family: ubuntu;
+}
+
+button {
+  border: none;
+  color: inherit;
+  border-radius: 2px;
+  text-transform: uppercase;
+  font-weight: bold;
+}
+
+h3 {
+  font-size: 1.25em;
+  text-transform: uppercase;
+  font-weight: bold;
+  color: inherit;
+  
+}
+
+#canvas {
+  display: block;
+  grid-row: 1/1;
+  grid-column: 2/2;
+  width: 100%;
+  height: 100%;
+}
+
+#aside {
+  grid-row: 1/1;
+  grid-column: 1/1;
+  
+  padding: 16px;
+  /*border-right: 1px solid #ddd;*/
+  
+  /*background: rgba(255,255,255,0.75);*/
+  background: white;
+  color: black;
+  font-size: 1.25em;
+  
+  box-shadow: 0 0 8px 0px rgba(0,0,0,0.55);
+}
+
+#aside input {
+  font-size: inherit;
+}
+
+#aside input[type="number"],
+#aside input[type="text"] {
+  width: 64px;
+  -moz-appearance: textfield;
+  appearance: textfield;
+  
+}
+#aside input[type="number"]:hover {
+  -moz-appearance: initial;
+  appearance: initial;
+}
+
+
+
+#aside table td {
+  padding: 4px;
+}
+
+#toolbar {
+  grid-row: 2/2;
+  grid-column: 1/-1;
+
+  display: flex;
+  flex-flow: row;
+  flex-direction: row;
+  justify-content: center;
+
+  width: 100%;
+  
+  background: white;
+  color: rgba(0,0,0,1);
+}
+
+#toolbar input[type="radio"] {
+  display: none;
+}
+#toolbar input[type="radio"] + label {
+  padding: 0px 0px;
+  max-width: 64px;
+  max-height: 64px;
+  font-size: 40px;
+  font-weight: bold;
+  
+  /* this centers the text (V & H) no matter the size */
+  text-align: center;
+  flex: 1;
+  
+  display: flex;
+  flex-flow: column;
+  justify-content: center;
+  /* ------------------------------------------------ */
+  
+  transition: background-color, color 0.15s ease;
+}
+
+#toolbar input[type="radio"]:disabled + label {
+  color: rgba(0,0,0,0.2);
+}
+
+#toolbar input[type="radio"]:checked + label {
+  background: black;
+  color: white;
+}
+
+#status {
+  margin: 0;
+  padding: 16px;
+  background: #eee;
+}
+
+.hidden-input {
+  position: absolute;
+  width: 0;
+  padding: 0;
+  border: 0;
+}
+
+@media screen and (min-width: 768px) {
+  body {
+    grid-template-rows: 1fr;
+    grid-template-columns: 92px auto 1fr;
+  }
+  
+  #toolbar {
+    grid-row: 1/1;
+    grid-column: 1/1;
+    flex-flow: column;
+  }
+  #toolbar input[type="radio"] + label {
+    max-width: 92px;
+    max-height: 92px;
+    font-size: 48px;
+  }
+          
+  #aside {
+    grid-row: 1/1;
+    grid-column: 2/2;
+    justify-self: start;
+    
+    padding: 16px;
+  }
+  
+  #canvas {
+    grid-row: 1/1;
+    grid-column: 3/3;
+  }
+  
+  #status {
+    grid-row: 2/2;
+    grid-column: 1/3;
+  }
+}

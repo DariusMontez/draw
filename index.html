@@ -1,0 +1,147 @@
+<!-- 
+
+Author: DariusMontez
+Description: Vector Graphics Editor Web Application
+This app is (or will be?) similar to Inskape or Adobe Illustrator
+
+TODO:
+  
+- Show an aside menu when an object is selected
+    x/y/width/height inputs
+    scale lock
+    set units
+    stroke/fill
+    transformations: flip, rotate 90, mirror
+    set origin
+
+- Show manipilation arrows on a selected object's BBox corners
+    scale X
+    scale Y 
+    rotate about origin
+    
+
+-->
+
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <title>Draw</title>
+    <meta charset="utf-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1"/>
+
+    <link rel="stylesheet" href="style.css">
+<!--    <link rel="stylesheet" href="theme-harleydavidson.css">-->
+    <link rel="stylesheet" href="theme-blue.css">
+<!--    <link rel="stylesheet" href="theme-youtube.css">-->
+    
+    
+    <script src="app.js" async></script>
+    
+  </head>
+  
+  <body>
+    <svg id="canvas" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+      <defs>
+        <style>
+          svg .selection-outline {
+            paint-order: stroke;
+            stroke-dasharray: 5 5;
+            stroke-width: 1px;
+            stroke: rgba(0,0,0,0.75);
+            fill: none;
+            animation: dash 0.5s linear;
+            animation-iteration-count: infinite;
+          }
+
+          @keyframes dash {
+            to {
+              stroke-dashoffset: 10;
+            }
+          }
+        </style>
+      </defs>
+<!--      <line x1="25" y1="25" x2="100" y2="25" stroke="#9800ff"/>-->
+    </svg>
+    
+    <aside id="aside">
+      <h3>Object Properties</h3>
+      <form id="objectProperties">
+        <table style="width:100%;" border="0" cellspacing="0" cellpadding="0">
+          
+          <tr>
+            <td>POSITION</td>
+            <td><input type="number" name="x" oninput="app.handlers.x(event)" pattern="^\d*([.]\d+)?$" step="0.1"> ,  <input type="number" name="y" oninput="app.handlers.y(event)" pattern="^\d*([.]\d+)?$" step="0.1"></td>
+          </tr>
+          
+          <tr>
+            <td>SIZE</td>
+            <td><input type="number" name="width" oninput="app.handlers.width(event)" pattern="^\d*([.]\d+)?$" step="0.1">
+          &times;
+          <input type="number" name="height" oninput="app.handlers.height(event)" pattern="^\d*([.]\d+)?$" step="0.1"></td>
+          </tr>
+          
+          <tr>
+            <td>FILL COLOR</td>
+            <td><input type="color" name="fill" oninput="app.handlers.style(event)" ></td>
+          </tr>
+          
+          <tr>
+            <td>STROKE COLOR</td>
+            <td><input type="color" name="stroke" oninput="app.handlers.style(event)"></td>
+          </tr>
+          
+          <tr>
+            <td>STROKE WIDTH</td>
+            <td><input type="number" name="stroke-width" oninput="app.handlers.style(event)" pattern="^\d*([.]\d+)?$" step="0.1"></td>
+          </tr>
+          
+        </table>
+      </form>
+    </aside>
+    
+    <p id="status" hidden>ready</p>
+    
+    <form id="toolbar" class="radio-button-group" onchange="app.tool=event.target.value">
+      <input type="radio" name="tool" id="radioSelect" value="select" checked>
+      <label for="radioSelect" title="Select, move, & transform">&#10148;</label>
+      
+      <input type="radio" name="tool" id="radioLine" value="line" disabled>
+      <label for="radioLine" title="Pencil: Straight lines & freehand (disabled)">&#9998;</label>
+      
+      <input type="radio" name="tool" id="radioBezier" value="bezier" disabled>
+      <label for="radioBezier" title="Bezier curves (disabled)">&#10002;</label>
+      
+      <input type="radio" name="tool" id="radioRect" value="rect">        
+      <label for="radioRect" title="Rectangles & squares (+SHIFT)"><span style="margin-bottom: 10%;">&#9632;</label>
+
+      <input type="radio" name="tool" id="radioArc" value="arc">        
+      <label for="radioArc" title="Circles"><span style="margin-bottom: 10%;">&#9679;</span></label>
+      
+      <input type="radio" name="tool" id="radioText" value="text">        
+      <label for="radioText" title="Text"><span style="font-family: times;">T</span></label>
+
+      <!-- 
+      circle &cir; (partial &#9685)
+      star &star;
+      arc &profline
+      trapezoid &trpezium;
+      square &square; (rounded &#9634;)
+      triangle &triangle;
+      text (T) &Topf;, &#84
+      arc &acd;
+      line &mdash;
+      pencil &#9998;
+      writing-hand &#9997;
+      caligraphy-pen &#10001; (black &#10002)
+      select-arrow &#10138;
+      arrowhead &#10148;
+      node-editor &#9658;
+      gear &#2699;
+      options &#8285;
+      -->
+      
+      
+    </form>
+  </body>
+</html>

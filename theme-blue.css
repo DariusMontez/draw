@@ -1,0 +1,46 @@
+/* blacks and greys */
+
+body {
+  font-family: arial;
+}
+
+#toolbar {
+  background: rgba(51, 102, 187, 1);
+  color: rgba(255,255,255,0.30);
+}
+
+#toolbar input[type="radio"]:checked + label {
+  color: white;
+  background: rgba(0,0,0,0.0);
+}
+
+#aside {
+  background: rgba(51, 102, 187, 1);
+  /*color: rgba(0,0,0,0.65);*/
+  color: rgba(255,255,255,0.67);
+  font-size: 0.90em;
+  border: 0;
+  box-shadow: 0 0 12px 0px rgba(0,0,0,0.75);
+}
+}
+#aside table td {
+  text-transform: uppercase;
+  font-weight: bold;
+  padding: 8px 8px;
+}
+
+#aside h3 {
+  color: black;
+}
+#aside input {
+  background: rgba(0,0,0,0.20);
+  color: inherit;
+  border: 0;
+  min-height: calc(1em + 16px);
+  line-height: 1em;
+  border-radius: 2px;
+  padding: 8px;
+}
+#canvas {
+  background: #e3e3e3;
+}
